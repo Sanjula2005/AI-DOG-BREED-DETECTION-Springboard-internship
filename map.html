@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+  <title>Map</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<div class="container">
+  <div class="map-wrapper">
+  <div class="map-card">
+    <h3>Find Nearby Services 🐾</h3>
+<p style="opacity:0.9; margin-bottom:25px;">
+  Because every good dog deserves great care ❤️
+</p>
+
+
+    <input
+  id="location"
+  placeholder="📍 Enter your city or area"
+  class="map-input"
+/>
+
+<select id="service" class="map-select">
+  <option value="vet">🐶 Veterinary Clinic</option>
+  <option value="pet shop">🛒 Pet Shop</option>
+</select>
+
+<button class="btn-main map-btn" onclick="goMap()">Search Nearby</button>
+
+  </div>
+</div>
+</div>
+
+<script>
+function goMap(){
+  const loc=document.getElementById("location").value;
+  const svc=document.getElementById("service").value;
+  window.open(`https://www.google.com/maps/search/${svc}+near+${loc}`);
+}
+</script>
+
+<script src="chatbot.js"></script>
+<script>
+fetch("navbar.html").then(r=>r.text()).then(t=>navbar.innerHTML=t);
+</script>
+<script>
+function logout() {
+  localStorage.clear();
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+</html>

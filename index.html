@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PawPedia</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* ---------- BODY ---------- */
+/* body {
+  background: url("bg.gif") no-repeat center center fixed;
+  background-size: cover;
+} */
+ body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+
+/* ---------- TOP RIGHT AUTH BUTTON ---------- */
+.auth-btn {
+  position: fixed;
+  top: 25px;
+  right: 30px;
+  background: #ffe08a;
+  color: #6b3e17;
+  padding: 10px 22px;
+  border-radius: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+/* ---------- HERO SECTION ---------- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 90%;
+  max-width: 1300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ---------- LEFT SECTION ---------- */
+.left {
+  background: linear-gradient(135deg, #ec903a, #ad5210);
+  max-width: 540px;
+  padding: 48px 44px;
+  color: white;
+  border-radius: 28px;
+  position: relative;
+  overflow: hidden;
+
+  /* depth */
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.15);
+
+  /* animation */
+  animation: floatIn 1.2s ease forwards;
+}
+
+/* subtle shine */
+.left::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -30%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at top left,
+    rgba(255,255,255,0.18),
+    transparent 55%
+  );
+  animation: shine 6s infinite linear;
+  pointer-events: none;
+}
+
+.bone {
+  width: 60px;
+  height: 18px;
+  background: #ffe08a;
+  border-radius: 20px;
+  position: relative;
+  margin-bottom: 25px;
+  animation: boneWiggle 2.5s infinite ease-in-out;
+}
+
+@keyframes boneWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(6deg); }
+}
+
+
+.bone::before,
+.bone::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: #ffe08a;
+  border-radius: 50%;
+  top: -2px;
+}
+
+.bone::before { left: -12px; }
+.bone::after { right: -12px; }
+
+h1 {
+  font-size: 72px;
+  font-weight: 800;
+  margin-bottom: 24px;
+}
+
+.left p {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  max-width: 480px;
+}
+
+.cta {
+  display: inline-flex;
+  background: linear-gradient(135deg, #6b3e17, #8d4e1c);
+  color: white;
+  padding: 14px 38px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.25);
+}
+
+.cta:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 16px 30px rgba(0,0,0,0.35);
+}
+
+
+/* ---------- RIGHT IMAGE ---------- */
+.right {
+  width: 480px;
+  height: 480px;
+}
+
+.circle-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.circle-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- OFFER SECTION ---------- */
+.offers {
+  background: white;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.offers h2 {
+  font-size: 32px;
+  margin-bottom: 60px;
+  color: #6b3e17;
+}
+
+.offer-grid {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.offer {
+  width: 180px;
+}
+
+.offer-icon {
+  width: 110px;
+  height: 110px;
+  background: #ff8c2f;
+  border-radius: 50%;
+  margin: 0 auto 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.offer-icon:hover {
+  transform: scale(1.05);
+}
+
+.offer p {
+  font-size: 14px;
+  color: #444;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .right {
+    margin-top: 40px;
+    width: 320px;
+    height: 320px;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  .auth-btn {
+    top: 15px;
+    right: 15px;
+  }
+}
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes shine {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+html {
+  height: 100%;
+}
+
+.bg {
+  animation: slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #ffb347 50%, #ffcc33 50%);
+  bottom: 0;
+  left: -50%;
+  opacity: 0.45;
+  position: fixed;
+  right: -50%;
+  top: 0;
+  z-index: -3;
+}
+
+.bg2 {
+  animation-direction: alternate-reverse;
+  animation-duration: 4s;
+  z-index: -4;
+}
+
+.bg3 {
+  animation-duration: 5s;
+  z-index: -5;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-25%);
+  }
+  100% {
+    transform: translateX(25%);
+  }
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- TOP RIGHT BUTTON -->
+<a class="auth-btn" href="login.html">Login / Register</a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+
+    <div class="left">
+      <div class="bone"></div>
+      <h1>PawPedia</h1>
+
+      <p>
+        Whether you're a curious dog lover, a first-time pet parent,
+        or someone who just found a cute dog on the street and needs
+        to know the breed — PawPedia’s got your back (and your paws).
+      </p>
+
+      <a class="cta" href="login.html">GET STARTED NOW !</a>
+      
+    </div>
+
+    <div class="right">
+      <div class="circle-img">
+        <img src="doggy.gif" alt="Dog">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- OFFERS -->
+<section class="offers">
+  <h2>What do we offer....</h2>
+
+  <div class="offer-grid">
+    <div class="offer">
+      <div class="offer-icon">🐾</div>
+      <p>AI Dog Breed Prediction</p>
+    </div>
+
+    <div class="offer">
+      <div class="offer-icon">🦴</div>
+      <p>AI-Generated Diet & Care Plans</p>
+    </div>
+
+    <div class="offer">
+      <div class="offer-icon">💬</div>
+      <p>Interactive Dog Chatbot</p>
+    </div>
+
+    <div class="offer">
+      <div class="offer-icon">🛒</div>
+      <p>Smart Navigation for vets & pet shops</p>
+    </div>
+  </div>
+</section>
+
+</body>
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+</html>

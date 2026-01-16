@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PawPedia – Predict</title>
+
+  <!-- Bootstrap -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+  >
+
+  <!-- App Styles -->
+  <link rel="stylesheet" href="style.css?v=2001">
+
+  <!-- SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<div id="navbar"></div>
+<script>
+  fetch("navbar.html")
+    .then(res => res.text())
+    .then(html => document.getElementById("navbar").innerHTML = html);
+</script>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div class="container mt-5">
+
+  <!-- Upload Card -->
+  <div class="card shadow-lg p-4">
+
+    <h4 class="fw-bold mb-4 text-center">
+      Upload Image for Prediction 🐶
+    </h4>
+
+    <!-- Upload Area -->
+    <div id="drop-area" class="upload-area mb-4">
+      <img id="uploadPreview" class="preview-img d-none" />
+      <p id="uploadText">Drag & Drop or Click to Upload</p>
+      <input
+        type="file"
+        id="imageInput"
+        accept="image/*"
+        hidden
+      >
+    </div>
+
+    <!-- Predict Button -->
+    <button id="predictBtn"
+        class="btn-main predict-btn"
+        onclick="predictImage()">
+  Predict
+</button>
+
+
+  </div>
+
+</div>
+
+<!-- ================= PREDICTION MODAL ================= -->
+<div class="modal fade" id="predictionModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-4 text-center">
+
+      <h2 class="text-success fw-bold">🎉 Hurray!</h2>
+      <p class="text-muted mb-3">We've found your dog's breed</p>
+
+      <img
+        id="previewImage"
+        class="img-fluid rounded mb-3 preview-modal-img"
+        alt="Prediction Image"
+      >
+
+      <h4 id="predBreed" class="fw-bold"></h4>
+      <p id="predConfidence" class="text-muted"></p>
+
+      <button
+        class="btn btn-info w-100 mt-2"
+        onclick="goToBreedPage()"
+      >
+        More Info & Diet Plan
+      </button>
+
+      <button
+        class="btn btn-secondary w-100 mt-2"
+        data-bs-dismiss="modal"
+      >
+        Close
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="app.js"></script>
+<script src="chatbot.js"></script>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+<!-- Dashboard GIF Background -->
+<div class="gif-bg"></div>
+<div class="gif-overlay"></div>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+    <title>Breed Information</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css?v=1001">
+
+</head>
+
+<body>
+<!-- 
+<nav class="navbar navbar-dark bg-primary px-4">
+    <h4 class="text-white mb-0">🐶 Breed Details</h4>
+    <button class="btn btn-light" onclick="goHome()">Back Home</button>
+</nav> -->
+<div id="navbar"></div>
+<script>
+fetch("navbar.html")
+  .then(res => res.text())
+  .then(html => document.getElementById("navbar").innerHTML = html);
+</script>
+
+
+<div class="container mt-4">
+    <div class="row g-4">
+
+        <!-- LEFT: Breed Info -->
+        <div class="col-lg-8">
+            <div class="card shadow-sm h-100">
+                <div class="card-body" id="breedInfo">
+                    <h4 class="fw-bold">Loading breed info...</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: Diet Plan -->
+        <div class="col-lg-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-3">🍖 Diet Plan</h5>
+
+                    <select id="lifeStage" class="form-select mb-3">
+                        <option value="">Select Life Stage</option>
+                        <option value="Puppy">Puppy</option>
+                        <option value="Teenage">Teenage</option>
+                        <option value="Adult">Adult</option>
+                    </select>
+
+                    <button class="btn btn-success w-100" onclick="loadDietPlan()">
+                        Get Diet Plan
+                    </button>
+
+                    <div id="dietResult" class="mt-4"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="breed.js"></script>
+<script src="chatbot.js"></script>
+<script>
+function logout() {
+  localStorage.clear();
+  window.location.href = "index.html";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+  <title>History</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<div class="container">
+  <div class="card">
+    <h3>Your Prediction History 🐾</h3>
+    <ul id="history-list"></ul>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script src="chatbot.js"></script>
+<script>
+fetch("navbar.html").then(r=>r.text()).then(t=>navbar.innerHTML=t);
+loadHistory();
+</script>
+</body>
+</html>

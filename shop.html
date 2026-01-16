@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+  <title>PawPedia • Pet Shop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<div class="container shop-container">
+
+  <h2 class="shop-title">🐾 PawPedia Pet Shop</h2>
+  <p class="shop-subtitle">Handpicked essentials your dog will love</p>
+
+  <div class="shop-grid">
+
+    <!-- PRODUCT 1 -->
+    <div class="product-card">
+      <img src="demo1.jpg" alt="Dog Food">
+      <h4>Premium Dog Food</h4>
+      <p class="product-desc">Rs: 899<br>Nutritious & balanced daily meals</p>
+      <button class="btn-main" onclick="addToCart('Premium Dog Food')">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- PRODUCT 2 -->
+    <div class="product-card">
+      <img src="demo2.jpg" alt="Chew Toy">
+      <h4>Chew Toy</h4>
+      <p class="product-desc">Rs: 399 <br>Keeps your dog playful & active</p>
+      <button class="btn-main" onclick="addToCart('Chew Toy')">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- PRODUCT 3 -->
+    <div class="product-card">
+      <img src="demo3.jpg" alt="Shampoo">
+      <h4>Dog Shampoo</h4>
+      <p class="product-desc">Rs: 450 <br>
+        Gentle care for shiny fur</p>
+      <button class="btn-main" onclick="addToCart('Dog Shampoo')">
+        Add to Cart
+      </button>
+    </div>
+
+  </div>
+
+  <!-- CART ACTION -->
+  <div class="checkout-wrap">
+    <button class="checkout-btn" onclick="goToCart()">🧾 Checkout</button>
+
+  </div>
+
+</div>
+
+<script>
+/* ================= CART DATA ================= */
+
+const PRICES = {
+  "Premium Dog Food": 899,
+  "Chew Toy": 399,
+  "Dog Shampoo": 450
+};
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+/* ================= CART UI ================= */
+
+function updateCartBadge() {
+  const badge = document.getElementById("cart-count");
+  if (!badge) return;
+
+  if (cart.length === 0) {
+    badge.style.display = "none";
+  } else {
+    badge.style.display = "inline-block";
+    badge.innerText = cart.length;
+  }
+}
+function goToCart() {
+  window.location.href = "cart.html";
+}
+
+/* ================= ADD TO CART ================= */
+
+function addToCart(product) {
+  cart.push(product);
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  updateCartBadge();
+
+  alert(`🐾 ${product} added to cart`);
+}
+
+/* ================= CHECKOUT ================= */
+
+function checkout() {
+  if (cart.length === 0) {
+    alert("🛒 Your cart is empty");
+    return;
+  }
+
+  let total = 0;
+  let summary = "";
+
+  cart.forEach(item => {
+    total += PRICES[item];
+    summary += `• ${item} — Rs ${PRICES[item]}\n`;
+  });
+
+  const confirmOrder = confirm(
+    `🧾 ORDER SUMMARY\n\n${summary}\n------------------\nTotal: Rs ${total}\n\nPlace order?`
+  );
+
+  if (confirmOrder) {
+    alert("🎉 Order placed successfully!\n\nThank you for shopping at PawPedia 🐶");
+    cart = [];
+    localStorage.removeItem("cart");
+    updateCartBadge();
+  }
+}
+
+/* ================= INIT ================= */
+
+document.addEventListener("DOMContentLoaded", updateCartBadge);
+</script>
+
+
+<script src="chatbot.js"></script>
+<script>
+fetch("navbar.html")
+  .then(r => r.text())
+  .then(t => navbar.innerHTML = t);
+</script>
+<script>
+function logout() {
+  localStorage.clear();
+  window.location.href = "index.html";
+}
+</script>
+
+
+</body>
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+</html>
